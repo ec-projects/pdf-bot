@@ -92,7 +92,8 @@ program
     createApi(initiateQueue, {
       port: port,
       postPushCommand: apiOptions.postPushCommand,
-      token: apiOptions.token
+      token: apiOptions.token,
+      storagePath: configuration.storagePath,
     }).listen(port, function() {
       debug('Listening to port %d', port)
     })

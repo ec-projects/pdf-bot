@@ -24,7 +24,8 @@ function createPdfGenerator(storagePath, options = {}, storagePlugins = {}) {
     return htmlPdf
       .create(url, options)
       .then((pdf) => {
-        var pdfPath = path.join(storagePath, 'pdf', (uuid() + '.pdf'))
+        //var pdfPath = path.join(storagePath, 'pdf', (uuid() + '.pdf'))
+        var pdfPath = path.join(storagePath, 'pdf', (job.id + '.pdf'))
 
         debug('Saving PDF to %s', pdfPath)
 
