@@ -4,14 +4,10 @@ var fs = require('fs');
 
 function createSyncStorage(options = {}) {
 
-  if (! options.targetUrl) {
-    throw new Error('SyncBack: no URL provided')
-  }
-
   return function syncBack(localPath, job) {
     return new Promise((resolve, reject) => {
 
-      if ('noSync' in job.meta) {
+      if (! options.targetUrl || 'noSync' in job.meta) {
         resolve({path: {file: null}});
         return;
       }
