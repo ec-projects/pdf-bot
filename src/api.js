@@ -81,17 +81,20 @@ function createApi(createQueue, options = {}) {
         debug('Target file:', filePath);
 
         var cmd = 'pdf-bot -c config.js generate ' + response.id;
-        childProcess.execSync(cmd, {timeout: 10000});
+        try {
+          childProcess.execSync(cmd, {timeout: 10000});
 
-        if (fs.existsSync(filePath)) {
-          var file = fs.readFileSync(filePath);
-          response.file = (new Buffer(file)).toString('base64');
-          res.status(201).json(response);
-          return;
+          if (fs.existsSync(filePath)) {
+            var file = fs.readFileSync(filePath);
+            response.file = (new Buffer(file)).toString('base64');
+            res.status(201).json(response);
+          } else {
+            res.status(500).json({'error': 'File generation failed'});
+          }
+
+        } catch (err) {
+          res.status(500).json({'error': err.toString('ascii')});
         }
-
-        debug('File does not exist: ', filePath);
-        res.status(500).json({});
       })
 
   });
