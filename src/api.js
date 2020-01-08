@@ -86,8 +86,11 @@ function createApi(createQueue, options = {}) {
 
           if (fs.existsSync(filePath)) {
             var file = fs.readFileSync(filePath);
-            response.file = (new Buffer(file)).toString('base64');
-            res.status(201).json(response);
+
+            res.status(201).json({
+              id: response.id,
+              file: (new Buffer(file)).toString('base64')
+            });
           } else {
             res.status(500).json({'error': 'File generation failed'});
           }
