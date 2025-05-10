@@ -31,7 +31,7 @@
     "commander": "~2",
     "debug": "~2",
     "express": "~4",
-    "html-pdf-chrome": "~0.7.1",
+    "html-pdf-chrome": "~0.4.3",
     "lodash.chunk": "^4.2.0",
     "lodash.clonedeep": "^4.5.0",
     "lodash.merge": "^4.6.0",
